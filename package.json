@@ -1,5 +1,5 @@
 {
-  "name": "react-ts",
+  "name": "ws-rsjx-react-ts",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
@@ -7,7 +7,8 @@
   "dependencies": {
     "react": "16.8.4",
     "react-dom": "16.8.4",
-    "react-scripts": "2.1.3"
+    "react-scripts": "2.1.3",
+    "rxjs": "6.5.4"
   },
   "devDependencies": {
     "@types/react": "16.8.8",

@@ -1,43 +1,13 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
-import { render } from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
 
-import { interval } from "rxjs";
-import { map } from "rxjs/operators";
-import "./styles.css";
+ReactDOM.render(<App />, document.getElementById('root'));
 
-const source = ["Adam", "Brian", "Christine", "1"];
-const names$ = interval(1000).pipe(map(i => source.slice(0, i + 1)));
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
 
-const useObservable = observable => {
-  const [state, setState] = useState();
-
-  useEffect(() => {
-    const sub = observable.subscribe(setState);
-    return () => sub.unsubscribe();
-  }, [observable]);
-
-  return state;
-};
-
-function App() {
-  const names = useObservable(names$);
-
-  return (
-    <div className="App">
-      <h1>RxJS with React</h1>
-      <List items={names} />
-    </div>
-  );
-}
-
-const List = ({ items = [], loading = false }) => (
-  <ul className={loading ? "loading" : null}>
-    {items.map(item => (
-      <li key={item}>{item}</li>
-    ))}
-  </ul>
-);
-
-const rootElement = document.getElementById("root");
-render(<App />, rootElement);
